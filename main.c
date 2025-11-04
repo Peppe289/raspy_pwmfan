@@ -9,7 +9,7 @@
 
 int enable_pwm_sysfs()
 {
-    const int fd = open_rw_sysfs(PWM_EXPORT);
+    const int fd = open_wo_sysfs(PWM_EXPORT);
 
     if (write(fd, "0", 2) < 0) {
         perror("write export");
@@ -22,7 +22,7 @@ int enable_pwm_sysfs()
 int set_duty_cycle(int duty)
 {
     char buff[10] = {0};
-    const int fd = open_rw_sysfs(PWM_DUTY_CYCLE_PATH);
+    const int fd = open_wo_sysfs(PWM_DUTY_CYCLE_PATH);
 
     sprintf(buff, "%d", duty);
     if (write(fd, buff, strlen(buff)) < 0) {
@@ -36,7 +36,7 @@ int set_duty_cycle(int duty)
 int configure_pwm()
 {
     char buff[10] = {0};
-    int fd = open_rw_sysfs(PWM_PERIOD_PATH);
+    int fd = open_wo_sysfs(PWM_PERIOD_PATH);
 
     sprintf(buff, "%d", PWM_PERIOD);
     if (write(fd, buff, strlen(buff)) < 0) {
@@ -48,7 +48,7 @@ int configure_pwm()
 
     set_duty_cycle(DEFAULT_DUTY);
 
-    fd = open_rw_sysfs(PWM_ENABLE);
+    fd = open_wo_sysfs(PWM_ENABLE);
 
     if (write(fd, "1", 2) < 0)
     {

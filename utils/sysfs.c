@@ -38,7 +38,7 @@ int open_ro_sysfs(const char *path)
     return open_sysfs(path, O_RDONLY);
 }
 
-int open_rw_sysfs(const char *path)
+int open_wo_sysfs(const char *path)
 {
-    return open_sysfs(path, O_RDWR);
+    return open_sysfs(path, O_WRONLY);
 }

@@ -16,7 +16,7 @@
 #define CPU_TEMP_PATH "/sys/class/thermal/thermal_zone0/hwmon0/temp1_input"
 
 int open_ro_sysfs(const char *);
-int open_rw_sysfs(const char *);
+int open_wo_sysfs(const char *);
 int percentage_pwm_duty_cycle(int percent);
 
 enum steps {
